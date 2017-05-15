@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type="text" placeholder="search..." v-model="query">
+    <input type="text" placeholder="Search..." v-model="query">
     <span class="tag is-main" :class="{ 'is-active': filters.main }" @click="filters.main = !filters.main">Main</span>
     <span class="tag is-renderer" :class="{ 'is-active': filters.renderer }" @click="filters.renderer = !filters.renderer">Renderer</span>
     <span class="tag is-both" :class="{ 'is-active': filters.both }" @click="filters.both = !filters.both">Both</span>

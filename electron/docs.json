@@ -75,7 +75,8 @@
       "dock.setIcon(image) _macOS_"
     ],
     "instanceMethods": [],
-    "instanceProperties": []
+    "instanceProperties": [],
+    "description": "Control your application's event lifecycle."
   },
   "autoUpdater": {
     "type": "main",
@@ -93,7 +94,8 @@
       "quitAndInstall()"
     ],
     "instanceMethods": [],
-    "instanceProperties": []
+    "instanceProperties": [],
+    "description": "Enable apps to automatically update themselves."
   },
   "BrowserWindow": {
     "type": "main",
@@ -242,7 +244,8 @@
     "instanceProperties": [
       "win.webContents",
       "win.id"
-    ]
+    ],
+    "description": "Create and control browser windows."
   },
   "clipboard": {
     "type": "both",
@@ -268,7 +271,8 @@
       "write(data[, type])"
     ],
     "instanceMethods": [],
-    "instanceProperties": []
+    "instanceProperties": [],
+    "description": "Perform copy and paste operations on the system clipboard."
   },
   "contentTracing": {
     "type": "main",
@@ -283,7 +287,8 @@
       "getTraceBufferUsage(callback)"
     ],
     "instanceMethods": [],
-    "instanceProperties": []
+    "instanceProperties": [],
+    "description": "Collect tracing data from Chromium's content module for finding performance"
   },
   "crashReporter": {
     "type": "both",
@@ -297,7 +302,8 @@
       "setExtraParameter(key, value) _macOS_"
     ],
     "instanceMethods": [],
-    "instanceProperties": []
+    "instanceProperties": [],
+    "description": "Submit crash reports to a remote server."
   },
   "desktopCapturer": {
     "type": "renderer",
@@ -306,7 +312,8 @@
       "getSources(options, callback)"
     ],
     "instanceMethods": [],
-    "instanceProperties": []
+    "instanceProperties": [],
+    "description": "Access information about media sources that can be used to capture audio and"
   },
   "dialog": {
     "type": "main",
@@ -319,7 +326,8 @@
       "showCertificateTrustDialog([browserWindow, ]options, callback) _macOS_ _Windows_"
     ],
     "instanceMethods": [],
-    "instanceProperties": []
+    "instanceProperties": [],
+    "description": "Display native system dialogs for opening and saving files, alerting, etc."
   },
   "globalShortcut": {
     "type": "main",
@@ -331,7 +339,8 @@
       "unregisterAll()"
     ],
     "instanceMethods": [],
-    "instanceProperties": []
+    "instanceProperties": [],
+    "description": "Detect keyboard events when the application does not have keyboard focus."
   },
   "ipcMain": {
     "type": "main",
@@ -346,7 +355,8 @@
     "instanceProperties": [
       "event.returnValue",
       "event.sender"
-    ]
+    ],
+    "description": "Communicate asynchronously from the main process to renderer processes."
   },
   "ipcRenderer": {
     "type": "renderer",
@@ -361,7 +371,8 @@
       "sendToHost(channel[, arg1][, arg2][, ...])"
     ],
     "instanceMethods": [],
-    "instanceProperties": []
+    "instanceProperties": [],
+    "description": "Communicate asynchronously from a renderer process to the main process."
   },
   "nativeImage": {
     "type": "both",
@@ -388,7 +399,8 @@
       "image.getAspectRatio()",
       "image.addRepresentation(options)"
     ],
-    "instanceProperties": []
+    "instanceProperties": [],
+    "description": "Create tray, dock, and application icons using PNG or JPG files."
   },
   "net": {
     "type": "main",
@@ -397,7 +409,8 @@
       "request(options)"
     ],
     "instanceMethods": [],
-    "instanceProperties": []
+    "instanceProperties": [],
+    "description": "Issue HTTP/HTTPS requests using Chromium's native networking library"
   },
   "powerMonitor": {
     "type": "main",
@@ -409,7 +422,8 @@
     ],
     "methods": [],
     "instanceMethods": [],
-    "instanceProperties": []
+    "instanceProperties": [],
+    "description": "Monitor power state changes."
   },
   "powerSaveBlocker": {
     "type": "main",
@@ -420,7 +434,8 @@
       "isStarted(id)"
     ],
     "instanceMethods": [],
-    "instanceProperties": []
+    "instanceProperties": [],
+    "description": "Block the system from entering low-power (sleep) mode."
   },
   "process": {
     "type": "both",
@@ -445,7 +460,8 @@
       "getIOCounters() _Windows_ _Linux_"
     ],
     "instanceMethods": [],
-    "instanceProperties": []
+    "instanceProperties": [],
+    "description": "Extensions to process object."
   },
   "protocol": {
     "type": "main",
@@ -466,7 +482,8 @@
       "uninterceptProtocol(scheme[, completion])"
     ],
     "instanceMethods": [],
-    "instanceProperties": []
+    "instanceProperties": [],
+    "description": "Register a custom protocol and intercept existing protocol requests."
   },
   "remote": {
     "type": "renderer",
@@ -479,7 +496,8 @@
       "process"
     ],
     "instanceMethods": [],
-    "instanceProperties": []
+    "instanceProperties": [],
+    "description": "Use main process modules from the renderer process."
   },
   "screen": {
     "type": "both",
@@ -496,7 +514,8 @@
       "getDisplayMatching(rect)"
     ],
     "instanceMethods": [],
-    "instanceProperties": []
+    "instanceProperties": [],
+    "description": "Retrieve information about screen size, displays, cursor position, etc."
   },
   "session": {
     "type": "main",
@@ -531,7 +550,8 @@
       "ses.cookies",
       "ses.webRequest",
       "ses.protocol"
-    ]
+    ],
+    "description": "Manage browser sessions, cookies, cache, proxy settings, etc."
   },
   "shell": {
     "type": "both",
@@ -546,7 +566,8 @@
       "readShortcutLink(shortcutPath) _Windows_"
     ],
     "instanceMethods": [],
-    "instanceProperties": []
+    "instanceProperties": [],
+    "description": "Manage files and URLs using their default applications."
   },
   "systemPreferences": {
     "type": "main",
@@ -572,7 +593,8 @@
       "isInvertedColorScheme() _Windows_"
     ],
     "instanceMethods": [],
-    "instanceProperties": []
+    "instanceProperties": [],
+    "description": "Get system preferences."
   },
   "webContents": {
     "type": "main",
@@ -590,6 +612,7 @@
       "will-navigate",
       "did-navigate",
       "did-navigate-in-page",
+      "will-prevent-unload",
       "crashed",
       "plugin-crashed",
       "destroyed",
@@ -707,7 +730,8 @@
       "contents.hostWebContents",
       "contents.devToolsWebContents",
       "contents.debugger"
-    ]
+    ],
+    "description": "Render and control web pages."
   },
   "webFrame": {
     "type": "renderer",
@@ -730,6 +754,7 @@
       "clearCache()"
     ],
     "instanceMethods": [],
-    "instanceProperties": []
+    "instanceProperties": [],
+    "description": "Customize the rendering of the current web page."
   }
 }

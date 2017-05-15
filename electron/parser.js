@@ -78,13 +78,16 @@ function parseFile (file) {
       : moduleType.toLowerCase()
   }
 
+  let modulesDescription = rawFile.match(/>.+(\r?\n)/)[0].replace(/>\s+|\r?\n/g, '')
+
   return {
     moduleName,
     moduleType,
     moduleInstanceEvents,
     moduleMethods,
     moduleInstanceMethods,
-    moduleInstanceProperties
+    moduleInstanceProperties,
+    modulesDescription
   }
 }
 const allDocs = {}
@@ -100,7 +103,8 @@ function parse () {
       instanceEvents: data.moduleInstanceEvents || [],
       methods: data.moduleMethods || [],
       instanceMethods: data.moduleInstanceMethods || [],
-      instanceProperties: data.moduleInstanceProperties || []
+      instanceProperties: data.moduleInstanceProperties || [],
+      description: data.modulesDescription
     }
 
     Object.keys(allDocs).forEach(module => {
