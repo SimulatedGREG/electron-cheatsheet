@@ -12,14 +12,14 @@
       <section v-if="module.methods.length > 0">
         <div class="title">Methods</div>
         <ul>
-          <li v-for="method in module.methods" @click="open(method)">{{ method }}</li>
+          <li v-for="method in module.methods" @click="open(method, 'method')">{{ method }}</li>
         </ul>
       </section>
 
-      <section v-if="module.methods.length > 0">
-        <div class="title">Methods</div>
+      <section v-if="module.instanceEvents.length > 0">
+        <div class="title">Instance Events</div>
         <ul>
-          <li v-for="method in module.methods">{{ method }}</li>
+          <li v-for="event in module.instanceEvents" @click="open(event, 'event')">{{ event }}</li>
         </ul>
       </section>
     </div>
@@ -36,26 +36,45 @@
       }
     },
     methods: {
-      open (meta) {
-        let anchor = this.name
-        anchor += meta.match(/^[A-z]+(\.[A-z]+)?(\.[A-z]+)?/g)[0].replace(/\./g, '')
-
-        let params = meta.match(/\(.+\)/g)
-        if (params !== null) {
-          anchor += params[0].replace(/\[?,\s|\],\s|\]|\(/g, '-').replace(/\[|\)|^-/g, '')
+      open (meta, type) {
+        let name = this.name
+        let camels = this.name.match(/[A-Z]/g)
+        if (camels !== null) {
+          camels.forEach(letter => {
+            name = name.replace(letter, `-${letter.toLowerCase()}`)
+          })
         }
 
-        let tags = meta.match(/_[A-z]+_/g)
-        if (tags !== null) {
-          tags.forEach(tag => {
-            anchor += `-${tag.replace(/_/g, '')}`
-          })
+        let anchor = ''
+
+        switch (type) {
+          case 'method':
+            anchor = this.name
+            anchor += meta.match(/^[A-z]+(\.[A-z]+)?(\.[A-z]+)?/g)[0].replace(/\./g, '')
+
+            let params = meta.match(/\(.+\)/g)
+            if (params !== null) {
+              anchor += params[0].replace(/\[?,\s|\],\s|\]|\(/g, '-').replace(/\[|\)|^-/g, '')
+            }
+
+            let tags = meta.match(/_[A-z]+_/g)
+            if (tags !== null) {
+              tags.forEach(tag => {
+                anchor += `-${tag.replace(/_/g, '')}`
+              })
+            }
+            break
+
+          case 'event':
+            anchor += 'event-'
+            anchor += meta
+            break
         }
 
         anchor = anchor.replace(/-$/g, '').replace(/--/g, '-')
         anchor = anchor.toLowerCase()
 
-        window.open(`https://electron.atom.io/docs/api/${this.name}/#${anchor}`)
+        window.open(`https://electron.atom.io/docs/api/${name}/#${anchor}`)
       }
     }
   }
