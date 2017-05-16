@@ -8,10 +8,10 @@
       "before-quit",
       "will-quit",
       "quit",
-      "open-file",
-      "open-url",
-      "activate",
-      "continue-activity",
+      "open-file _macOS_",
+      "open-url _macOS_",
+      "activate _macOS_",
+      "continue-activity _macOS_",
       "browser-window-blur",
       "browser-window-focus",
       "browser-window-created",
@@ -20,7 +20,7 @@
       "select-client-certificate",
       "login",
       "gpu-process-crashed",
-      "accessibility-support-changed"
+      "accessibility-support-changed _macOS_ _Windows_"
     ],
     "methods": [
       "quit()",
@@ -103,7 +103,7 @@
       "page-title-updated",
       "close",
       "closed",
-      "session-end",
+      "session-end _Windows_",
       "unresponsive",
       "responsive",
       "blur",
@@ -117,18 +117,18 @@
       "restore",
       "resize",
       "move",
-      "moved",
+      "moved _macOS_",
       "enter-full-screen",
       "leave-full-screen",
       "enter-html-full-screen",
       "leave-html-full-screen",
-      "app-command",
-      "scroll-touch-begin",
-      "scroll-touch-end",
-      "scroll-touch-edge",
-      "swipe",
-      "sheet-begin",
-      "sheet-end"
+      "app-command _Windows_",
+      "scroll-touch-begin _macOS_",
+      "scroll-touch-end _macOS_",
+      "scroll-touch-edge _macOS_",
+      "swipe _macOS_",
+      "sheet-begin _macOS_",
+      "sheet-end _macOS_"
     ],
     "methods": [
       "new BrowserWindow([options])",
@@ -417,8 +417,8 @@
     "instanceEvents": [
       "suspend",
       "resume",
-      "on-ac",
-      "on-battery"
+      "on-ac _Windows_",
+      "on-battery _Windows_"
     ],
     "methods": [],
     "instanceMethods": [],
@@ -572,9 +572,9 @@
   "systemPreferences": {
     "type": "main",
     "instanceEvents": [
-      "accent-color-changed",
-      "color-changed",
-      "inverted-color-scheme-changed"
+      "accent-color-changed _Windows_",
+      "color-changed _Windows_",
+      "inverted-color-scheme-changed _Windows_"
     ],
     "methods": [
       "isDarkMode() _macOS_",
@@ -722,7 +722,8 @@
       "contents.getFrameRate()",
       "contents.invalidate()",
       "contents.getWebRTCIPHandlingPolicy()",
-      "contents.setWebRTCIPHandlingPolicy(policy)"
+      "contents.setWebRTCIPHandlingPolicy(policy)",
+      "contents.getOSProcessId()"
     ],
     "instanceProperties": [
       "contents.id",

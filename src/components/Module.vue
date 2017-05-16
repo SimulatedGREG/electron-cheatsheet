@@ -10,9 +10,9 @@
       <div class="desc">{{ module.description }}</div>
 
       <section v-if="module.methods.length > 0">
-        <div class="title">Methods</div>
+        <div class="title">Static Methods</div>
         <ul>
-          <li v-for="method in module.methods" @click="open(method, 'method')">{{ method }}</li>
+          <li v-for="method in module.methods" @click="open(method, 'static-method')">{{ method }}</li>
         </ul>
       </section>
 
@@ -20,6 +20,20 @@
         <div class="title">Instance Events</div>
         <ul>
           <li v-for="event in module.instanceEvents" @click="open(event, 'event')">{{ event }}</li>
+        </ul>
+      </section>
+
+      <section v-if="module.instanceMethods.length > 0">
+        <div class="title">Instance Methods</div>
+        <ul>
+          <li v-for="method in module.instanceMethods" @click="open(method, 'instance-method')">{{ method }}</li>
+        </ul>
+      </section>
+
+      <section v-if="module.instanceProperties.length > 0">
+        <div class="title">Instance Properites</div>
+        <ul>
+          <li v-for="property in module.instanceProperties" @click="open(property, 'instance-property')">{{ property }}</li>
         </ul>
       </section>
     </div>
@@ -44,17 +58,18 @@
             name = name.replace(letter, `-${letter.toLowerCase()}`)
           })
         }
+        name = name.replace(/^-/, '')
 
         let anchor = ''
 
         switch (type) {
-          case 'method':
+          case 'static-method':
             anchor = this.name
             anchor += meta.match(/^[A-z]+(\.[A-z]+)?(\.[A-z]+)?/g)[0].replace(/\./g, '')
 
             let params = meta.match(/\(.+\)/g)
             if (params !== null) {
-              anchor += params[0].replace(/\[?,\s|\],\s|\]|\(/g, '-').replace(/\[|\)|^-/g, '')
+              anchor += params[0].replace(/\[?,\s|\],\s|\]|\(/g, '-').replace(/\[|\)|^-|\.\.\./g, '')
             }
 
             let tags = meta.match(/_[A-z]+_/g)
@@ -68,7 +83,35 @@
           case 'event':
             anchor += 'event-'
             anchor += meta
+
+            let tags__ = meta.match(/_[A-z]+_/g)
+            if (tags__ !== null) {
+              tags__.forEach(tag => {
+                anchor += `-${tag.replace(/_/g, '')}`
+              })
+            }
+
+            anchor = anchor.replace(/(\s_[A-z]+_)?(\s_[A-z]+_)?(\s_[A-z]+_)?/g, '')
             break
+
+          case 'instance-method':
+            anchor += meta.match(/^[A-z]+(\.[A-z]+)?(\.[A-z]+)?/g)[0].replace(/\./g, '')
+
+            let params_ = meta.match(/\(.+\)/g)
+            if (params_ !== null) {
+              anchor += params_[0].replace(/\[?,\s|\],\s|\]|\(/g, '-').replace(/\[|\)|^-/g, '')
+            }
+
+            let tags_ = meta.match(/_[A-z]+_/g)
+            if (tags_ !== null) {
+              tags_.forEach(tag => {
+                anchor += `-${tag.replace(/_/g, '')}`
+              })
+            }
+            break
+
+          case 'instance-property':
+            anchor += meta.replace(/\./g, '')
         }
 
         anchor = anchor.replace(/-$/g, '').replace(/--/g, '-')

@@ -14,20 +14,20 @@ function getRepo () {
   })
 }
 
-console.log(chalk.blue('Destroying previous data...'))
-del(['electron/*', '!electron/parser.js'])
-  .then(() => {
-    console.log(chalk.blue('Downloading electron repo for docs...'))
-    getRepo()
-      .then(() => {
-        console.log(chalk.blue('Cleaning up filebase...'))
-        del(['electron/*', '!electron/parser.js', '!electron/docs', '!electron/docs/*.md'], { dot: true })
-          .then(() => {
-            console.log(chalk.yellow('Begin parsing...'))
-            parse()
-          })
-      })
-  })
+// console.log(chalk.blue('Destroying previous data...'))
+// del(['electron/*', '!electron/parser.js'])
+//   .then(() => {
+//     console.log(chalk.blue('Downloading electron repo for docs...'))
+//     getRepo()
+//       .then(() => {
+//         console.log(chalk.blue('Cleaning up filebase...'))
+//         del(['electron/*', '!electron/parser.js', '!electron/docs', '!electron/docs/*.md'], { dot: true })
+//           .then(() => {
+//             console.log(chalk.yellow('Begin parsing...'))
+//             parse()
+//           })
+//       })
+//   })
 
 function getDocs () {
   let docPaths = fs.readdirSync(path.join(__dirname, '/docs/api'))
@@ -46,7 +46,7 @@ function parseFile (file) {
   if (moduleName === null) return null
   moduleName = moduleName[0].replace('# ', '')
 
-  let moduleInstanceEvents = rawFile.match(/Event:\s'.+'/gim)
+  let moduleInstanceEvents = rawFile.match(/Event:\s'.+'(\s_[A-z]+_)?(\s_[A-z]+_)?(\s_[A-z]+_)?/gim)
   if (moduleInstanceEvents !== null && moduleInstanceEvents.length > 0) {
     for (let i = 0; i < moduleInstanceEvents.length; i++) {
       moduleInstanceEvents[i] = moduleInstanceEvents[i].replace(/Event: '|'/g, '')
@@ -126,3 +126,5 @@ function parse () {
     process.exit()
   })
 }
+
+parse()
