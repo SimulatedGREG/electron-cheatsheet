@@ -41,7 +41,7 @@
   input {
     border: 2px solid #f0f1f4;
     border-radius: 4px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Mono', monospace;
     outline: none;
     padding: 10px;
     margin-right: 8px;

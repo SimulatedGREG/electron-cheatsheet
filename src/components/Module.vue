@@ -8,6 +8,20 @@
       <span class="close" @click="expanded = false">&times;</span>
       <div class="title">{{ name }}</div>
       <div class="desc">{{ module.description }}</div>
+
+      <section v-if="module.methods.length > 0">
+        <div class="title">Methods</div>
+        <ul>
+          <li v-for="method in module.methods" @click="open(method)">{{ method }}</li>
+        </ul>
+      </section>
+
+      <section v-if="module.methods.length > 0">
+        <div class="title">Methods</div>
+        <ul>
+          <li v-for="method in module.methods">{{ method }}</li>
+        </ul>
+      </section>
     </div>
     <div class="bg" :class="{ 'is-active': expanded }" @click="expanded = false"></div>
   </div>
@@ -19,6 +33,29 @@
     data () {
       return {
         expanded: false
+      }
+    },
+    methods: {
+      open (meta) {
+        let anchor = this.name
+        anchor += meta.match(/^[A-z]+(\.[A-z]+)?(\.[A-z]+)?/g)[0].replace(/\./g, '')
+
+        let params = meta.match(/\(.+\)/g)
+        if (params !== null) {
+          anchor += params[0].replace(/\[?,\s|\],\s|\]|\(/g, '-').replace(/\[|\)|^-/g, '')
+        }
+
+        let tags = meta.match(/_[A-z]+_/g)
+        if (tags !== null) {
+          tags.forEach(tag => {
+            anchor += `-${tag.replace(/_/g, '')}`
+          })
+        }
+
+        anchor = anchor.replace(/-$/g, '').replace(/--/g, '-')
+        anchor = anchor.toLowerCase()
+
+        window.open(`https://electron.atom.io/docs/api/${this.name}/#${anchor}`)
       }
     }
   }
@@ -68,11 +105,12 @@
     display: none;
     height: 600px;
     left: 50%;
+    overflow: hidden;
     padding: 26px 32px;
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 500px;
+    width: 600px;
     z-index: 4;
 
     &.is-active { display: block; }
@@ -89,7 +127,7 @@
       &:hover { opacity: 1; }
     }
 
-    .title {
+    & > .title {
       // border-bottom: 2px solid rgba(255, 255, 255, .7);
       font-family: 'Roboto Mono', monospace;
       font-size: 26px;
@@ -102,8 +140,36 @@
       border-radius: 4px;
       font-family: 'Roboto Mono', monospace;
       font-size: 14px;
+      margin-bottom: 14px;
       margin-top: 12px;
       padding: 16px;
+    }
+  }
+
+  .modal section {
+    margin-bottom: 10px;
+
+    .title {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      border-radius: 4px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    li {
+      cursor: pointer;
+      font-size: 14px;
+      padding: 8px 12px;
+      transition: background 100ms ease-in-out;
+
+      &:hover { background: rgba(0,0,0,.4) !important; }
+
+      &:nth-child(2n-1) { background: rgba(0,0,0,.2); }
+      &:nth-child(2n) { background: rgba(0,0,0,.3); }
     }
   }
 

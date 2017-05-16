@@ -54,7 +54,7 @@ export default {
 
 <style>
   @import "~minireset.css";
-  @import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono');
+  @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }
@@ -63,7 +63,7 @@ export default {
 }
   body {
     background: #f8f9fa;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Mono', monospace;
   }
 
   h1 {
