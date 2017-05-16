@@ -76,6 +76,7 @@
     ],
     "instanceMethods": [],
     "instanceProperties": [],
+    "properties": [],
     "description": "Control your application's event lifecycle."
   },
   "autoUpdater": {
@@ -95,6 +96,7 @@
     ],
     "instanceMethods": [],
     "instanceProperties": [],
+    "properties": [],
     "description": "Enable apps to automatically update themselves."
   },
   "BrowserWindow": {
@@ -245,6 +247,7 @@
       "win.webContents",
       "win.id"
     ],
+    "properties": [],
     "description": "Create and control browser windows."
   },
   "clipboard": {
@@ -272,6 +275,7 @@
     ],
     "instanceMethods": [],
     "instanceProperties": [],
+    "properties": [],
     "description": "Perform copy and paste operations on the system clipboard."
   },
   "contentTracing": {
@@ -288,6 +292,7 @@
     ],
     "instanceMethods": [],
     "instanceProperties": [],
+    "properties": [],
     "description": "Collect tracing data from Chromium's content module for finding performance"
   },
   "crashReporter": {
@@ -303,6 +308,7 @@
     ],
     "instanceMethods": [],
     "instanceProperties": [],
+    "properties": [],
     "description": "Submit crash reports to a remote server."
   },
   "desktopCapturer": {
@@ -313,6 +319,7 @@
     ],
     "instanceMethods": [],
     "instanceProperties": [],
+    "properties": [],
     "description": "Access information about media sources that can be used to capture audio and"
   },
   "dialog": {
@@ -327,6 +334,7 @@
     ],
     "instanceMethods": [],
     "instanceProperties": [],
+    "properties": [],
     "description": "Display native system dialogs for opening and saving files, alerting, etc."
   },
   "globalShortcut": {
@@ -340,6 +348,7 @@
     ],
     "instanceMethods": [],
     "instanceProperties": [],
+    "properties": [],
     "description": "Detect keyboard events when the application does not have keyboard focus."
   },
   "ipcMain": {
@@ -356,6 +365,7 @@
       "event.returnValue",
       "event.sender"
     ],
+    "properties": [],
     "description": "Communicate asynchronously from the main process to renderer processes."
   },
   "ipcRenderer": {
@@ -372,6 +382,7 @@
     ],
     "instanceMethods": [],
     "instanceProperties": [],
+    "properties": [],
     "description": "Communicate asynchronously from a renderer process to the main process."
   },
   "nativeImage": {
@@ -400,6 +411,7 @@
       "image.addRepresentation(options)"
     ],
     "instanceProperties": [],
+    "properties": [],
     "description": "Create tray, dock, and application icons using PNG or JPG files."
   },
   "net": {
@@ -410,6 +422,7 @@
     ],
     "instanceMethods": [],
     "instanceProperties": [],
+    "properties": [],
     "description": "Issue HTTP/HTTPS requests using Chromium's native networking library"
   },
   "powerMonitor": {
@@ -423,6 +436,7 @@
     "methods": [],
     "instanceMethods": [],
     "instanceProperties": [],
+    "properties": [],
     "description": "Monitor power state changes."
   },
   "powerSaveBlocker": {
@@ -435,6 +449,7 @@
     ],
     "instanceMethods": [],
     "instanceProperties": [],
+    "properties": [],
     "description": "Block the system from entering low-power (sleep) mode."
   },
   "process": {
@@ -443,14 +458,6 @@
       "loaded"
     ],
     "methods": [
-      "noAsar",
-      "type",
-      "versions.electron",
-      "versions.chrome",
-      "resourcesPath",
-      "mas",
-      "windowsStore",
-      "defaultApp",
       "crash()",
       "hang()",
       "setFdLimit(maxDescriptors) _macOS_ _Linux_",
@@ -461,6 +468,16 @@
     ],
     "instanceMethods": [],
     "instanceProperties": [],
+    "properties": [
+      "noAsar",
+      "type",
+      "versions.electron",
+      "versions.chrome",
+      "resourcesPath",
+      "mas",
+      "windowsStore",
+      "defaultApp"
+    ],
     "description": "Extensions to process object."
   },
   "protocol": {
@@ -483,6 +500,7 @@
     ],
     "instanceMethods": [],
     "instanceProperties": [],
+    "properties": [],
     "description": "Register a custom protocol and intercept existing protocol requests."
   },
   "remote": {
@@ -492,11 +510,13 @@
       "require(module)",
       "getCurrentWindow()",
       "getCurrentWebContents()",
-      "getGlobal(name)",
-      "process"
+      "getGlobal(name)"
     ],
     "instanceMethods": [],
     "instanceProperties": [],
+    "properties": [
+      "process"
+    ],
     "description": "Use main process modules from the renderer process."
   },
   "screen": {
@@ -515,6 +535,7 @@
     ],
     "instanceMethods": [],
     "instanceProperties": [],
+    "properties": [],
     "description": "Retrieve information about screen size, displays, cursor position, etc."
   },
   "session": {
@@ -523,8 +544,7 @@
       "will-download"
     ],
     "methods": [
-      "fromPartition(partition[, options])",
-      "defaultSession"
+      "fromPartition(partition[, options])"
     ],
     "instanceMethods": [
       "ses.getCacheSize(callback)",
@@ -551,6 +571,9 @@
       "ses.webRequest",
       "ses.protocol"
     ],
+    "properties": [
+      "defaultSession"
+    ],
     "description": "Manage browser sessions, cookies, cache, proxy settings, etc."
   },
   "shell": {
@@ -567,6 +590,7 @@
     ],
     "instanceMethods": [],
     "instanceProperties": [],
+    "properties": [],
     "description": "Manage files and URLs using their default applications."
   },
   "systemPreferences": {
@@ -594,6 +618,7 @@
     ],
     "instanceMethods": [],
     "instanceProperties": [],
+    "properties": [],
     "description": "Get system preferences."
   },
   "webContents": {
@@ -732,6 +757,7 @@
       "contents.devToolsWebContents",
       "contents.debugger"
     ],
+    "properties": [],
     "description": "Render and control web pages."
   },
   "webFrame": {
@@ -756,6 +782,7 @@
     ],
     "instanceMethods": [],
     "instanceProperties": [],
+    "properties": [],
     "description": "Customize the rendering of the current web page."
   }
 }

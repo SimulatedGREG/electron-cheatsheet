@@ -9,33 +9,42 @@
       <div class="title">{{ name }}</div>
       <div class="desc">{{ module.description }}</div>
 
-      <section v-if="module.methods.length > 0">
-        <div class="title">Static Methods</div>
-        <ul>
-          <li v-for="method in module.methods" @click="open(method, 'static-method')">{{ method }}</li>
-        </ul>
-      </section>
+      <div class="docs">
+        <section v-if="module.properties.length > 0">
+          <div class="title">Static Properties</div>
+          <ul>
+            <li v-for="property in module.properties" @click="open(property, 'static-method')">{{ property }}</li>
+          </ul>
+        </section>
 
-      <section v-if="module.instanceEvents.length > 0">
-        <div class="title">Instance Events</div>
-        <ul>
-          <li v-for="event in module.instanceEvents" @click="open(event, 'event')">{{ event }}</li>
-        </ul>
-      </section>
+        <section v-if="module.methods.length > 0">
+          <div class="title">Static Methods</div>
+          <ul>
+            <li v-for="method in module.methods" @click="open(method, 'static-method')">{{ method }}</li>
+          </ul>
+        </section>
 
-      <section v-if="module.instanceMethods.length > 0">
-        <div class="title">Instance Methods</div>
-        <ul>
-          <li v-for="method in module.instanceMethods" @click="open(method, 'instance-method')">{{ method }}</li>
-        </ul>
-      </section>
+        <section v-if="module.instanceEvents.length > 0">
+          <div class="title">Instance Events</div>
+          <ul>
+            <li v-for="event in module.instanceEvents" @click="open(event, 'event')">{{ event }}</li>
+          </ul>
+        </section>
 
-      <section v-if="module.instanceProperties.length > 0">
-        <div class="title">Instance Properites</div>
-        <ul>
-          <li v-for="property in module.instanceProperties" @click="open(property, 'instance-property')">{{ property }}</li>
-        </ul>
-      </section>
+        <section v-if="module.instanceMethods.length > 0">
+          <div class="title">Instance Methods</div>
+          <ul>
+            <li v-for="method in module.instanceMethods" @click="open(method, 'instance-method')">{{ method }}</li>
+          </ul>
+        </section>
+
+        <section v-if="module.instanceProperties.length > 0">
+          <div class="title">Instance Properites</div>
+          <ul>
+            <li v-for="property in module.instanceProperties" @click="open(property, 'instance-property')">{{ property }}</li>
+          </ul>
+        </section>
+      </div>
     </div>
     <div class="bg" :class="{ 'is-active': expanded }" @click="expanded = false"></div>
   </div>
@@ -165,14 +174,14 @@
       0 8px 10px -5px rgba(0, 0, 0, 0.3);
     color: #fff;
     display: none;
-    height: 600px;
+    height: calc(100vh - 80px);
     left: 50%;
     overflow: hidden;
     padding: 26px 32px;
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 600px;
+    width: calc(100vw - 80px);
     z-index: 4;
 
     &.is-active { display: block; }
@@ -205,11 +214,19 @@
       margin-bottom: 14px;
       margin-top: 12px;
       padding: 16px;
+      width: calc(50% - 10px);
+    }
+
+    .docs {
+      column-count: 2;
+      column-gap: 20px;
     }
   }
 
   .modal section {
+    display: inline-block;
     margin-bottom: 10px;
+    width: 100%;
 
     .title {
       font-size: 18px;

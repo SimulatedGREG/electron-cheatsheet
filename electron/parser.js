@@ -56,6 +56,7 @@ function parseFile (file) {
   let moduleMethods = rawFile.match(/^####?\s`.+`(.+)?$/gim)
   let moduleInstanceMethods = []
   let moduleInstanceProperties = []
+  let moduleProperties = []
   if (moduleMethods !== null && moduleMethods.length > 0) {
     for (let i = 0; i < moduleMethods.length; i++) {
       moduleMethods[i] = moduleMethods[i].replace(/####? `|`/g, '')
@@ -68,6 +69,9 @@ function parseFile (file) {
     for (let i = 0; i < moduleMethods.length; i++) {
       moduleMethods[i] = moduleMethods[i].replace(new RegExp(`^${moduleName}\.`), '')
     }
+
+    moduleProperties = moduleMethods.filter(match => !/\(|\)/g.test(match))
+    moduleMethods = moduleMethods.filter(match => /\(|\)/g.test(match))
   }
 
   let moduleType = rawFile.match(/Process: \[.+\]/)
@@ -87,7 +91,8 @@ function parseFile (file) {
     moduleMethods,
     moduleInstanceMethods,
     moduleInstanceProperties,
-    modulesDescription
+    modulesDescription,
+    moduleProperties
   }
 }
 const allDocs = {}
@@ -104,6 +109,7 @@ function parse () {
       methods: data.moduleMethods || [],
       instanceMethods: data.moduleInstanceMethods || [],
       instanceProperties: data.moduleInstanceProperties || [],
+      properties: data.moduleProperties || [],
       description: data.modulesDescription
     }
 
